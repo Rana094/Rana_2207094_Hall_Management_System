@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="547.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hall_management_system.RegisterControl">
+   <children>
+      <BorderPane prefHeight="729.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="50.0" prefWidth="690.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="309.0" layoutY="14.0" prefHeight="24.0" prefWidth="72.0" text="Register" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="511.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutX="260.0" layoutY="95.0" prefHeight="248.0" prefWidth="483.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="95.0">
+                     <children>
+                        <VBox maxHeight="-Infinity" prefHeight="337.0" prefWidth="148.0">
+                           <children>
+                              <Label prefHeight="45.0" prefWidth="148.0" text="Enter Your Name" />
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="148.0" text="Enter Your Roll" />
+                              <Label prefHeight="45.0" prefWidth="353.0" text="Enter Your E-mail" />
+                              <Label prefHeight="73.0" prefWidth="148.0" text="Enter Your Address" />
+                              <Label prefHeight="45.0" prefWidth="353.0" text="Enter Your Department" />
+                              <Label prefHeight="45.0" prefWidth="353.0" text="Enter Your CGPA" />
+                              <Label prefHeight="45.0" prefWidth="353.0" text="Select Birth Date" />
+                           </children>
+                        </VBox>
+                        <VBox maxHeight="-Infinity" prefHeight="331.0" prefWidth="334.0">
+                           <children>
+                              <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="334.0" />
+                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
+                              <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="334.0" />
+                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
+                              <TextField minHeight="-Infinity" prefHeight="30.0" prefWidth="334.0" />
+                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
+                              <TextArea prefHeight="51.0" prefWidth="334.0" />
+                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
+                              <TextField minHeight="-Infinity" prefHeight="30.0" prefWidth="334.0" />
+                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
+                              <TextField minHeight="-Infinity" prefHeight="30.0" prefWidth="334.0" />
+                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
+                              <TextField minHeight="-Infinity" prefHeight="30.0" prefWidth="334.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="77.0" fitWidth="102.0" layoutX="219.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button layoutX="113.0" layoutY="34.0" mnemonicParsing="false" prefHeight="7.0" prefWidth="92.0" text="Choose Photo" />
+               </children>
+            </AnchorPane>
+         </center>
+         <bottom>
+            <AnchorPane prefHeight="56.0" prefWidth="690.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="314.0" layoutY="2.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="62.0" text="SIGN UP" />
+                  <Button layoutX="297.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="21.0" prefWidth="97.0" text="Return to Home">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </bottom>
+         <left>
+            <AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="318.0" prefWidth="57.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <AnchorPane prefHeight="307.0" prefWidth="113.0" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>
