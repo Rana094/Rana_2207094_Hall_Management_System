@@ -1,0 +1,11 @@
+#registerAnchorPane {
+    -fx-padding: 0px 0px 0px 10px;
+}
+.label
+{
+    -fx-font-weight: bold;
+
+}
+.button{
+    -fx-font-weight: bold;
+}

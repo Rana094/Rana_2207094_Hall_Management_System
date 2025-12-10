@@ -1,0 +1,16 @@
+.button {
+    -fx-background-color: #569eff;
+    -fx-font-weight: bold;
+}
+
+
+.grayButton
+{
+    -fx-background-color: #7e7e7e;
+    -fx-text-fill: #eae4e4;
+}
+.redButon
+{
+    -fx-background-color: #ffbebe;
+    -fx-text-fill: #635c5c;
+}
