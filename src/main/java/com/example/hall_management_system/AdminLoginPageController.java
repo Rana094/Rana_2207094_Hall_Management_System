@@ -4,32 +4,32 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RegisterControl {
+public class AdminLoginPageController {
 
     @FXML
-    private Button chooseImageBtn;
+    private Button homeBtn;
 
     @FXML
-    private Button gotoHomeBtn;
+    private Button loginBtnAdmin;
 
     @FXML
-    private Button signupBtn;
+    private TextField passwordTxtAdmin;
 
     @FXML
-    void chooseImage(MouseEvent event) {
-
-    }
+    private TextField usernameTxtAdmin;
 
     @FXML
-    void gotoHome(MouseEvent event) throws IOException {
-        Stage stage=(Stage) gotoHomeBtn.getScene().getWindow();
+    void gotoAdminProfile(MouseEvent event) throws IOException {
 
-        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("HomePage.fxml"));
+        Stage stage=(Stage) loginBtnAdmin.getScene().getWindow();
+
+        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("RegisterPage.fxml"));
         Scene scene =new Scene (fxmlLoader.load());
         stage.setTitle("Student Profile ");
         stage.setScene(scene);
@@ -38,8 +38,9 @@ public class RegisterControl {
     }
 
     @FXML
-    void submitClcik(MouseEvent event) throws IOException {
-        Stage stage=(Stage) signupBtn.getScene().getWindow();
+    void gotoHome(MouseEvent event) throws IOException {
+
+        Stage stage=(Stage) homeBtn.getScene().getWindow();
 
         FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("HomePage.fxml"));
         Scene scene =new Scene (fxmlLoader.load());

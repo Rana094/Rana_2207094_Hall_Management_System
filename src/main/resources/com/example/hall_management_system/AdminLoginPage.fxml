@@ -16,6 +16,6 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="gotoHome" layoutX="321.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#gotoHome" text="Return Home" />
+      <Button fx:id="homeBtn" layoutX="321.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#gotoHome" text="Return Home" />
    </children>
 </AnchorPane>
