@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="547.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hall_management_system.RegisterControl">
    <children>
       <BorderPane prefHeight="729.0" prefWidth="698.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -62,15 +61,15 @@
                      </children>
                   </HBox>
                   <ImageView fitHeight="77.0" fitWidth="102.0" layoutX="219.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="113.0" layoutY="34.0" mnemonicParsing="false" prefHeight="7.0" prefWidth="92.0" text="Choose Photo" />
+                  <Button fx:id="chooseImageBtn" layoutX="113.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#chooseImage" prefHeight="7.0" prefWidth="92.0" text="Choose Photo" />
                </children>
             </AnchorPane>
          </center>
          <bottom>
             <AnchorPane prefHeight="56.0" prefWidth="690.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="314.0" layoutY="2.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="62.0" text="SIGN UP" />
-                  <Button layoutX="297.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="21.0" prefWidth="97.0" text="Return to Home">
+                  <Button fx:id="signupBtn" layoutX="314.0" layoutY="2.0" mnemonicParsing="false" onMouseClicked="#submitClcik" prefHeight="13.0" prefWidth="62.0" text="SIGN UP" />
+                  <Button fx:id="gotoHomeBtn" layoutX="297.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#gotoHome" prefHeight="21.0" prefWidth="97.0" text="Return to Home">
                      <font>
                         <Font size="10.0" />
                      </font>
