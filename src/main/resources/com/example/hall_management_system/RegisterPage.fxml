@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +20,7 @@
          <children>
             <BorderPane prefHeight="547.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
-                  <StackPane prefHeight="60">
+                  <StackPane prefHeight="25.0" prefWidth="690.0">
                      <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Register" textFill="RED" />
                   </StackPane>
                </top>
@@ -27,39 +28,37 @@
                <center>
                   <AnchorPane fx:id="registerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="511.0" BorderPane.alignment="CENTER">
                      <children>
-                        <HBox layoutX="260.0" layoutY="95.0" prefHeight="248.0" prefWidth="483.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="95.0">
+                        <HBox layoutX="20.0" layoutY="77.0" prefHeight="347.0" prefWidth="473.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="77.0">
                            <children>
-                              <VBox maxHeight="-Infinity" prefHeight="337.0" prefWidth="148.0">
+                              <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="330.0" prefWidth="165.0" styleClass="vbox" stylesheets="@mycss.css">
                                  <children>
-                                    <Label prefHeight="45.0" prefWidth="148.0" text="Enter Your Name" />
-                                    <Label layoutX="10.0" layoutY="10.0" prefHeight="45.0" prefWidth="148.0" text="Enter Your Roll" />
-                                    <Label prefHeight="45.0" prefWidth="353.0" text="Enter Your E-mail" />
-                                    <Label prefHeight="73.0" prefWidth="148.0" text="Enter Your Address" />
-                                    <Label prefHeight="45.0" prefWidth="353.0" text="Enter Your Department" />
-                                    <Label prefHeight="45.0" prefWidth="353.0" text="Enter Your CGPA" />
-                                    <Label prefHeight="45.0" prefWidth="353.0" text="Select Birth Date" />
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="164.0" text="Enter Your Name" />
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="148.0" text="Enter Your Password" />
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="148.0" text="Confirm Your Password" />
+                                    <Label layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="165.0" text="Enter Your Roll" />
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="165.0" text="Enter Your E-mail" />
+                                    <Label prefHeight="51.0" prefWidth="177.0" text="Enter Your Address" />
+                                    <Label prefHeight="27.0" prefWidth="179.0" text="Enter Your Department" />
+                                    <Label prefHeight="27.0" prefWidth="353.0" text="Enter Your CGPA" />
+                                    <Label prefHeight="27.0" prefWidth="165.0" text="Select Birth Date" />
                                  </children>
                               </VBox>
-                              <VBox maxHeight="-Infinity" prefHeight="331.0" prefWidth="334.0">
+                              <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="300.0" styleClass="vbox" stylesheets="@mycss.css">
                                  <children>
-                                    <TextField fx:id="nameTxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="334.0" />
-                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
-                                    <TextField fx:id="rollTxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="110.0" />
-                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
-                                    <TextField fx:id="emailTxt" minHeight="-Infinity" prefHeight="30.0" prefWidth="334.0" />
-                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
+                                    <TextField fx:id="nameTxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="27.0" prefWidth="312.0" styleClass="text-field" stylesheets="@mycss.css" />
+                                    <PasswordField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="27.0" />
+                                    <PasswordField fx:id="passwordTxt" minHeight="-Infinity" prefHeight="27.0" />
+                                    <TextField fx:id="rollTxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="110.0" />
+                                    <TextField fx:id="emailTxt" minHeight="-Infinity" prefHeight="27.0" prefWidth="334.0" />
                                     <TextArea fx:id="addressTxt" prefHeight="51.0" prefWidth="334.0" />
-                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
-                                    <TextField fx:id="departmentTxt" minHeight="-Infinity" prefHeight="30.0" prefWidth="334.0" />
-                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="334.0" />
-                                    <TextField fx:id="cgpaTxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="105.0" />
-                                    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="11.0" prefWidth="334.0" />
-                                    <DatePicker fx:id="birthDateTxt" prefHeight="25.0" prefWidth="130.0" />
+                                    <TextField fx:id="departmentTxt" minHeight="-Infinity" prefHeight="27.0" prefWidth="334.0" />
+                                    <TextField fx:id="cgpaTxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="27.0" prefWidth="105.0" />
+                                    <DatePicker fx:id="birthDateTxt" prefHeight="27.0" prefWidth="130.0" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
-                        <ImageView fx:id="imageView" fitHeight="77.0" fitWidth="102.0" layoutX="219.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imageView" fitHeight="58.0" fitWidth="102.0" layoutX="219.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
                         <Button fx:id="chooseImageBtn" layoutX="100.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#chooseImage" prefHeight="25.0" prefWidth="100.0" text="Choose Photo" />
                      </children>
                   </AnchorPane>

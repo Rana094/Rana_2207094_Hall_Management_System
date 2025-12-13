@@ -3,10 +3,7 @@ package com.example.hall_management_system;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -59,8 +56,11 @@ public class RegisterControl {
 
     @FXML
     private ImageView imageView;
+    @FXML
+    private PasswordField passwordTxt;
 
     private byte[] imageBytes;
+
     private Logger logger= Logger.getLogger(this.getClass().getName());
 
     @FXML
@@ -100,11 +100,13 @@ public class RegisterControl {
     void submitClcik(MouseEvent event) throws IOException {
         Stage stage=(Stage) signupBtn.getScene().getWindow();
 
-        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("HomePage.fxml"));
-        Scene scene =new Scene (fxmlLoader.load());
-        stage.setTitle("Student Profile ");
-        stage.setScene(scene);
-        stage.show();
+        String password = passwordTxt.getText();
+        if (password == null || password.isEmpty()) {
+            logger.warning("Password not entered");
+            return;
+        }
+
+
 
         LocalDate birthDate = birthDateTxt.getValue();
 
@@ -120,12 +122,13 @@ public class RegisterControl {
 
         String birthdate = birthDate.toString();
 
+        dbManager.insertStudent(Integer.valueOf(rollTxt.getText()),nameTxt.getText(),emailTxt.getText(),addressTxt.getText(),departmentTxt.getText(),cgpaTxt.getText(),birthdate,imageBytes,password);
 
-
-        dbManager.insertStudent(Integer.valueOf(rollTxt.getText()),nameTxt.getText(),emailTxt.getText(),addressTxt.getText(),departmentTxt.getText(),cgpaTxt.getText(),birthdate,imageBytes);
-
-
-
+        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("HomePage.fxml"));
+        Scene scene =new Scene (fxmlLoader.load());
+        stage.setTitle("Student Profile ");
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

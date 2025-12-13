@@ -14,3 +14,10 @@
     -fx-background-color: #ffbebe;
     -fx-text-fill: #635c5c;
 }
+.text-field {
+    padding-bottom: 12px;
+}
+
+.vbox {
+    -fx-spacing: 8px;
+}

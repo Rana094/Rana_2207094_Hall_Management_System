@@ -54,7 +54,6 @@ public class HomePageController extends Application {
                 AnchorPane.setLeftAnchor(pane, 0.0);
                 AnchorPane.setRightAnchor(pane, 0.0);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
