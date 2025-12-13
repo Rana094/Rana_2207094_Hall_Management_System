@@ -15,6 +15,8 @@ import java.io.IOException;
 
 public class HomePageController extends Application {
 
+    private  DbManager dbManager=new DbManager();
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HomePageController.class.getResource("HomePage.fxml"));
@@ -22,6 +24,8 @@ public class HomePageController extends Application {
         stage.setTitle("Home Page");
         stage.setScene(scene);
         stage.show();
+
+        dbManager.getConnection();
     }
 
     @FXML
@@ -56,10 +60,8 @@ public class HomePageController extends Application {
         }
     }
 
-
     @FXML
     void gotoAdminPage(MouseEvent event) throws IOException {
-
         loadPage("AdminLoginPage.fxml");
 //        Stage stage=(Stage) gotoAdminPageBtn.getScene().getWindow();
 //
@@ -68,8 +70,6 @@ public class HomePageController extends Application {
 //        stage.setTitle("Admin Login Page");
 //        stage.setScene(scene);
 //        stage.show();
-
-
     }
 
     @FXML
