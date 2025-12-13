@@ -12,6 +12,7 @@ module com.example.hall_management_system {
     requires com.almasb.fxgl.all;
     requires java.desktop;
     requires java.sql;
+    requires org.slf4j;
 
     opens com.example.hall_management_system to javafx.fxml;
     exports com.example.hall_management_system;

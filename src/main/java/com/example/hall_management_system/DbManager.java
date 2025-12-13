@@ -106,12 +106,13 @@ public class DbManager {
                 statement.setString(6,birthdate);
                 statement.setBytes(7,image);
                 statement.setInt(8,roll);
-                statement.setString(0,password);
+                statement.setString(9,password);
                 statement.executeUpdate();
                 logger.info("Student updated");
 
             }
     }
+
     public List<Student> readStudents()
     {
         getConnection();
@@ -124,18 +125,14 @@ public class DbManager {
             {
                 int roll=rs.getInt("roll");
                 String name=rs.getString("name");
-
-
+                byte[] image = rs.getBytes("image");
+                students.add(new Student(roll,name,image));
             }
         }
         catch (SQLException e)
         {
             logger.info(e.toString());
         }
-        return List.of();
+        return students;
     }
-
-
-
-
 }
