@@ -37,7 +37,8 @@ public class ViewAllStudentsController  {
     private Button updateStudentBtn;
 
     @FXML
-    public void initialize() {
+    public void initialize()
+    {
         viewAllStudentRecords.getItems().addAll(dbManager.readStudents());
         logger.info("stuf on");
 
@@ -93,25 +94,22 @@ public class ViewAllStudentsController  {
         if (selectedStudent == null) return;
 
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("UpdateInfo.fxml")
-            );
-            Parent root = loader.load();
 
-            UpdateInfoController controller = loader.getController();
+            FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("UpdateInfo.fxml"));
+            Parent pane = fxmlLoader.load();
 
+            UpdateInfoController controller = fxmlLoader.getController();
             Student fullStudent = dbManager.getStudentByRoll(selectedStudent.getRoll());
-
             controller.setStudent(fullStudent);
 
-            Stage stage = new Stage();
-            stage.setTitle("Update Student Info");
-            stage.setScene(new Scene(root));
-            stage.show();
+            AppContext.adminHome
+                    .getCenterPane()
+                    .getChildren()
+                    .setAll(pane);
+
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }

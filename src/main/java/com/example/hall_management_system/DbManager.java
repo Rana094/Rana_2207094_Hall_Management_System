@@ -173,7 +173,7 @@ public class DbManager {
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, roll);
             ResultSet rs = ps.executeQuery();
-            return rs.next(); // true if found
+            return rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
         }

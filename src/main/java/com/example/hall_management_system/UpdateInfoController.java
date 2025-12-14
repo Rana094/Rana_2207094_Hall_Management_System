@@ -1,6 +1,8 @@
 package com.example.hall_management_system;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -49,7 +51,6 @@ public class UpdateInfoController {
     @FXML
     private Button updateBtn;
 
-    // ===== INTERNAL DATA =====
     private Student student;
     private byte[] imageBytes;
     private final DbManager dbManager = new DbManager();
@@ -59,7 +60,6 @@ public class UpdateInfoController {
         this.student = student;
         preloadData();
     }
-
 
     private void preloadData() {
 
@@ -104,7 +104,7 @@ public class UpdateInfoController {
 
 
     @FXML
-    void updateInfo(MouseEvent event) throws SQLException {
+    void updateInfo(MouseEvent event) throws SQLException, IOException {
 
         if (student == null) return;
 
@@ -148,13 +148,33 @@ public class UpdateInfoController {
                 passwordToSave
         );
 
-        ((Stage) updateBtn.getScene().getWindow()).close();
+//        Stage stage=(Stage) updateBtn.getScene().getWindow();
+//        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("AdminHomePage.fxml"));
+//        Scene scene =new Scene (fxmlLoader.load());
+//
+//        AdminHomePageController controller = fxmlLoader.getController();
+//        controller.loadPage("ViewAllStudents.fxml");
+//
+//        stage.setTitle("Admin Home Page");
+//        stage.setScene(scene);
+//        stage.show();
+        AppContext.adminHome.loadPage("ViewAllStudents.fxml");
+
     }
 
     @FXML
-    void goBack(MouseEvent event) {
-        Stage stage = (Stage) imageView.getScene().getWindow();
-        stage.close();
+    void goBack(MouseEvent event) throws IOException {
+//        Stage stage=(Stage) updateBtn.getScene().getWindow();
+//        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("AdminHomePage.fxml"));
+//        Scene scene =new Scene (fxmlLoader.load());
+//
+//        AdminHomePageController controller = fxmlLoader.getController();
+//        controller.loadPage("ViewAllStudents.fxml");
+//
+//        stage.setTitle("Admin Home Page");
+//        stage.setScene(scene);
+//        stage.show();
+        AppContext.adminHome.loadPage("ViewAllStudents.fxml");
     }
 
     private void showAlert(String msg) {

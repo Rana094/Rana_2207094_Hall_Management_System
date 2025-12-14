@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hall_management_system.UpdateInfoController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hall_management_system.UpdateInfoController">
     <center>
-        <AnchorPane prefHeight="547.0" prefWidth="690.0" stylesheets="@registerPageCss.css">
+        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="640.0" stylesheets="@registerPageCss.css">
             <children>
-                <BorderPane prefHeight="547.0" prefWidth="690.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <BorderPane prefHeight="505.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <top>
                         <StackPane prefHeight="25.0" prefWidth="690.0">
                             <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Update Your Info" textFill="RED" />
@@ -26,7 +26,7 @@
                     </top>
 
                     <center>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="511.0" BorderPane.alignment="CENTER">
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="511.0" BorderPane.alignment="CENTER">
                             <children>
                                 <HBox layoutX="20.0" layoutY="77.0" prefHeight="347.0" prefWidth="473.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="77.0">
                                     <children>
@@ -75,8 +75,8 @@
                     <!--               </bottom>-->
 
                     <bottom>
-                        <StackPane prefHeight="70">
-                            <VBox alignment="CENTER" spacing="8">
+                        <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="70" prefWidth="640.0">
+                            <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="640.0" spacing="8">
 
                                 <!-- SIGN UP Button -->
                                 <Button fx:id="updateBtn" mnemonicParsing="false" onMouseClicked="#updateInfo" prefHeight="25.0" prefWidth="76.0" stylesheets="@mycss.css" text="Update" />

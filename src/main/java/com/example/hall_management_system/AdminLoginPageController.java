@@ -39,7 +39,7 @@ public class AdminLoginPageController {
 
         Stage stage=(Stage) loginBtnAdmin.getScene().getWindow();
 
-        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("ViewAllStudents.fxml"));
+        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("AdminHomePage.fxml"));
         Scene scene =new Scene (fxmlLoader.load());
         stage.setTitle("Student Profile ");
         stage.setScene(scene);

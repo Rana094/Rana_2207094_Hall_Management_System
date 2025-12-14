@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hall_management_system.AdminHomePageController">
    <left>
       <AnchorPane prefHeight="504.0" prefWidth="146.0" BorderPane.alignment="CENTER">
          <children>
             <VBox layoutY="89.0" prefHeight="200.0" prefWidth="151.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="153.0" text="Home" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Send Notice" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="View All Students" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" text="Pending Approval" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Dining Manager approval" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Calculate Hall Due" />
+                  <Button fx:id="homeBtn" mnemonicParsing="false" onMouseClicked="#homeClicked" prefHeight="25.0" prefWidth="153.0" text="Home" />
+                  <Button fx:id="sendNoticeBtn" mnemonicParsing="false" onMouseClicked="#sendNoticeClicked" prefHeight="25.0" prefWidth="151.0" text="Send Notice" />
+                  <Button fx:id="viewAllStudentBtn" mnemonicParsing="false" onMouseClicked="#viewAllStudentClicked" prefHeight="25.0" prefWidth="151.0" text="View All Students" />
+                  <Button fx:id="pendingApprovalBtn" mnemonicParsing="false" onMouseClicked="#pendingApprovalClicked" prefHeight="25.0" prefWidth="160.0" text="Pending Approval" />
+                  <Button fx:id="diningManagerApprovalBtn" mnemonicParsing="false" onMouseClicked="#diningManagerApprovalClicked" prefHeight="25.0" prefWidth="151.0" text="Dining Manager approval" />
+                  <Button fx:id="calculateHallDueBtn" mnemonicParsing="false" onMouseClicked="#calculateHallDueClicked" prefHeight="25.0" prefWidth="151.0" text="Calculate Hall Due" />
                </children>
             </VBox>
          </children>
@@ -27,6 +27,9 @@
       <AnchorPane prefHeight="80.0" prefWidth="788.0" BorderPane.alignment="CENTER" />
    </top>
    <center>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="640.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="centerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="306.0" layoutY="218.0" text="Hello Main" />
+         </children></AnchorPane>
    </center>
 </BorderPane>

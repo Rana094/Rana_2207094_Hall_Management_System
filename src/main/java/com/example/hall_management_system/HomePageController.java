@@ -79,7 +79,7 @@ public class HomePageController extends Application {
 
         Stage stage=(Stage) gotoRegisterPageBtn.getScene().getWindow();
 
-        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("RegisterPage.fxml"));
+        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("RegisterPage.fxml"));
         Scene scene =new Scene (fxmlLoader.load());
         stage.setTitle("Register Page");
         stage.setScene(scene);
