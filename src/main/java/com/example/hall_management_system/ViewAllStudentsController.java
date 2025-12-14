@@ -1,7 +1,10 @@
 package com.example.hall_management_system;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -10,8 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -33,13 +38,8 @@ public class ViewAllStudentsController  {
 
     @FXML
     public void initialize() {
-
-        viewAllStudentRecords.getItems().addAll(
-                dbManager.readStudents()
-        );
+        viewAllStudentRecords.getItems().addAll(dbManager.readStudents());
         logger.info("stuf on");
-
-
 
         viewAllStudentRecords.setCellFactory(list -> new ListCell<>() {
 
@@ -62,7 +62,7 @@ public class ViewAllStudentsController  {
                     imageView.setPreserveRatio(true);
 
                     Label label = new Label(
-                            student.getRoll() + "  -  " + student.getName()
+                            student.getName() + "  -  " + student.getRoll()+" - "+student.getDept()
                     );
                     HBox hBox = new HBox(10, imageView, label);
                     setGraphic(hBox);
@@ -89,7 +89,29 @@ public class ViewAllStudentsController  {
     }
 
     @FXML
-    void updateStudent(MouseEvent event) {
+    private void updateStudent() {
+        if (selectedStudent == null) return;
 
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("UpdateInfo.fxml")
+            );
+            Parent root = loader.load();
+
+            UpdateInfoController controller = loader.getController();
+
+            Student fullStudent = dbManager.getStudentByRoll(selectedStudent.getRoll());
+
+            controller.setStudent(fullStudent);
+
+            Stage stage = new Stage();
+            stage.setTitle("Update Student Info");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 }

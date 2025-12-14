@@ -2,18 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane fx:id="rootpane" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hall_management_system.HomePageController">
    <center>
       <AnchorPane fx:id="contentArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="352.0" prefWidth="750.0">
          <children>
-            <TextField fx:id="usernameTxtStudent" layoutX="250.0" layoutY="71.0" prefWidth="250.0" promptText="Username" />
-            <TextField fx:id="passwordTxtStudent" layoutX="250.0" layoutY="114.0" prefWidth="250.0" promptText="Password" />
+            <TextField fx:id="usernameTxtStudent" layoutX="250.0" layoutY="71.0" prefWidth="250.0" promptText="Username / Roll" />
             <Button fx:id="loginBtnStudent" layoutX="337.0" layoutY="154.0" mnemonicParsing="false" onMouseClicked="#gotoStudentProfile" stylesheets="@mycss.css" text="LOG IN" />
             <Button fx:id="gotoRegisterPageBtn" layoutX="250.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#gotoRegisterPage" styleClass="grayButton" stylesheets="@mycss.css" text="REGISTER" />
             <Button fx:id="gotoAdminPageBtn" layoutX="403.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#gotoAdminPage" styleClass="redButon" stylesheets="@mycss.css" text="ADMIN LOG IN" />
@@ -22,6 +21,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <PasswordField fx:id="passwordTxtStudent" layoutX="250.0" layoutY="109.0" prefHeight="25.0" prefWidth="251.0" promptText="Password" />
          </children>
       </AnchorPane>
    </center>

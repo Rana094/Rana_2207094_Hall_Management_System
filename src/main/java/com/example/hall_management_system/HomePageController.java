@@ -5,7 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -27,6 +30,13 @@ public class HomePageController extends Application {
 
         dbManager.getConnection();
     }
+
+
+    @FXML
+    private TextField usernameTxtStudent;
+
+    @FXML
+    private PasswordField passwordTxtStudent;
 
     @FXML
     private BorderPane rootpane;
@@ -62,13 +72,6 @@ public class HomePageController extends Application {
     @FXML
     void gotoAdminPage(MouseEvent event) throws IOException {
         loadPage("AdminLoginPage.fxml");
-//        Stage stage=(Stage) gotoAdminPageBtn.getScene().getWindow();
-//
-//        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("AdminLoginPage.fxml"));
-//        Scene scene =new Scene (fxmlLoader.load());
-//        stage.setTitle("Admin Login Page");
-//        stage.setScene(scene);
-//        stage.show();
     }
 
     @FXML
@@ -87,14 +90,53 @@ public class HomePageController extends Application {
     @FXML
     void gotoStudentProfile(MouseEvent event) throws IOException {
 
-        Stage stage=(Stage) loginBtnStudent.getScene().getWindow();
 
-        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("RegisterPage.fxml"));
-        Scene scene =new Scene (fxmlLoader.load());
-        stage.setTitle("Student Profile ");
+        String rollText = usernameTxtStudent.getText();
+        String password = passwordTxtStudent.getText();
+
+        if (rollText.isEmpty() || password.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Username and password are required");
+            return;
+        }
+
+        int roll;
+        try {
+            roll = Integer.parseInt(rollText);
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Roll must be a number");
+            return;
+        }
+
+
+        if (!dbManager.rollExists(roll)) {
+            showAlert(Alert.AlertType.ERROR, "User doesn't exist");
+            return;
+        }
+
+
+        if (!dbManager.passwordMatches(roll, password)) {
+            showAlert(Alert.AlertType.ERROR, "Password doesn't match with username");
+            return;
+        }
+
+
+        Stage stage = (Stage) loginBtnStudent.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(
+                HomePageController.class.getResource("RegisterPage.fxml")
+        );
+        Scene scene = new Scene(loader.load());
+
+        stage.setTitle("Student Profile");
         stage.setScene(scene);
         stage.show();
-
     }
+
+    private void showAlert(Alert.AlertType type, String msg) {
+        Alert alert = new Alert(type);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
+
 
 }
