@@ -105,8 +105,8 @@ public class DbManager {
                 statement.setString(5,cgpa);
                 statement.setString(6,birthdate);
                 statement.setBytes(7,image);
-                statement.setInt(8,roll);
-                statement.setString(9,password);
+                statement.setString(8,password);
+                statement.setInt(9,roll);
                 statement.executeUpdate();
                 logger.info("Student updated");
 
@@ -126,7 +126,8 @@ public class DbManager {
                 int roll=rs.getInt("roll");
                 String name=rs.getString("name");
                 byte[] image = rs.getBytes("image");
-                students.add(new Student(roll,name,image));
+                String dept=rs.getString(("dept"));
+                students.add(new Student(roll,name,image,dept));
             }
         }
         catch (SQLException e)
@@ -135,4 +136,63 @@ public class DbManager {
         }
         return students;
     }
+
+    public Student getStudentByRoll(int roll) {
+        getConnection();
+
+        String sql = "SELECT * FROM studentsrecords WHERE roll=?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, roll);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Student(
+                        rs.getInt("roll"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getString("address"),
+                        rs.getString("dept"),
+                        rs.getString("cgpa"),
+                        rs.getString("birthdate"),
+                        rs.getBytes("image"),
+                        rs.getString("password")
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean rollExists(int roll) {
+        getConnection();
+        String sql = "SELECT 1 FROM studentsrecords WHERE roll=?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, roll);
+            ResultSet rs = ps.executeQuery();
+            return rs.next(); // true if found
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean passwordMatches(int roll, String password) {
+        getConnection();
+        String sql = "SELECT 1 FROM studentsrecords WHERE roll=? AND password=?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, roll);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

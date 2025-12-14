@@ -59,6 +59,9 @@ public class RegisterControl {
     @FXML
     private PasswordField passwordTxt;
 
+    @FXML
+    private PasswordField confirmpasswordTxt;
+
     private byte[] imageBytes;
 
     private Logger logger= Logger.getLogger(this.getClass().getName());
@@ -98,27 +101,44 @@ public class RegisterControl {
 
     @FXML
     void submitClcik(MouseEvent event) throws IOException {
+
+        if (rollTxt.getText().isEmpty() ||
+                nameTxt.getText().isEmpty() ||
+                emailTxt.getText().isEmpty() ||
+                addressTxt.getText().isEmpty() ||
+                departmentTxt.getText().isEmpty() ||
+                cgpaTxt.getText().isEmpty() ||
+                passwordTxt.getText().isEmpty() ||
+                confirmpasswordTxt.getText().isEmpty() ||
+                birthDateTxt.getValue() == null ||
+                imageBytes == null) {
+
+            showAlert(Alert.AlertType.WARNING, "All fields are required");
+            return;
+        }
+        int roll;
+        try {
+            roll = Integer.parseInt(rollTxt.getText());
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "Roll must be a number");
+            return;
+        }
+        if (dbManager.rollExists(roll)) {
+            showAlert(Alert.AlertType.ERROR, "Roll already exists");
+            return;
+        }
+        String password = passwordTxt.getText();
+        String confirmPassword = confirmpasswordTxt.getText();
+
+        if (!password.equals(confirmPassword)) {
+            showAlert(Alert.AlertType.ERROR, "Passwords do not match");
+            return;
+        }
+        showAlert(Alert.AlertType.INFORMATION, "Registration successful!");
+
         Stage stage=(Stage) signupBtn.getScene().getWindow();
 
-        String password = passwordTxt.getText();
-        if (password == null || password.isEmpty()) {
-            logger.warning("Password not entered");
-            return;
-        }
-
-
-
         LocalDate birthDate = birthDateTxt.getValue();
-
-        if (birthDate == null) {
-            logger.warning("Birthdate not selected");
-            return;
-        }
-
-        if (imageBytes == null) {
-            logger.warning("Image not selected");
-            return;
-        }
 
         String birthdate = birthDate.toString();
 
@@ -130,5 +150,12 @@ public class RegisterControl {
         stage.setScene(scene);
         stage.show();
     }
+
+    private void showAlert(Alert.AlertType type, String msg) {
+        Alert alert = new Alert(type);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
+
 
 }

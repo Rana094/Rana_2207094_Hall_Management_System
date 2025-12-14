@@ -46,8 +46,8 @@
                               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="300.0" styleClass="vbox" stylesheets="@mycss.css">
                                  <children>
                                     <TextField fx:id="nameTxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="27.0" prefWidth="312.0" styleClass="text-field" stylesheets="@mycss.css" />
-                                    <PasswordField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="27.0" />
-                                    <PasswordField fx:id="passwordTxt" minHeight="-Infinity" prefHeight="27.0" />
+                                    <PasswordField fx:id="passwordTxt" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="27.0" />
+                                    <PasswordField fx:id="confirmpasswordTxt" minHeight="-Infinity" prefHeight="27.0" />
                                     <TextField fx:id="rollTxt" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="110.0" />
                                     <TextField fx:id="emailTxt" minHeight="-Infinity" prefHeight="27.0" prefWidth="334.0" />
                                     <TextArea fx:id="addressTxt" prefHeight="51.0" prefWidth="334.0" />
