@@ -71,7 +71,6 @@ public class ViewAllStudentsController  {
             }
         });
 
-
         viewAllStudentRecords
                 .getSelectionModel()
                 .selectedItemProperty()

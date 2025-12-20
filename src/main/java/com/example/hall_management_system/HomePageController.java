@@ -76,12 +76,6 @@ public class HomePageController extends Application {
             Parent pane = FXMLLoader.load(getClass().getResource(page));
             contentArea.getChildren().setAll(pane);
 
-            if (pane instanceof AnchorPane) {
-                AnchorPane.setTopAnchor(pane, 0.0);
-                AnchorPane.setBottomAnchor(pane, 0.0);
-                AnchorPane.setLeftAnchor(pane, 0.0);
-                AnchorPane.setRightAnchor(pane, 0.0);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -150,9 +144,7 @@ public class HomePageController extends Application {
                 HomePageController.class.getResource("StudentHomePage.fxml")
         );
 
-        StudentHomePageController studentHomePageController=loader.getController();
-        studentHomePageController.setRoll(rollText);
-
+       AppContext.loggedInRoll=roll;
         Scene scene = new Scene(loader.load());
 
         stage.setTitle("Student Profile");

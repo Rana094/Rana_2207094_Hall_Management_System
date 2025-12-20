@@ -11,6 +11,7 @@ public class Student {
     private String dept;
     private String cgpa;
     private String birthdate;
+    private String password;
 
     public Student(int roll, String name, byte[] image,String dept) {
         this.roll = roll;
@@ -46,6 +47,7 @@ public class Student {
     }
 
     public String getEmail() {
+
         return email;
     }
 
@@ -58,13 +60,15 @@ public class Student {
     }
 
     public String getCgpa() {
+
         return cgpa;
     }
 
     public String getBirthdate() {
+
         return birthdate;
     }
-    private String password;
+
 
     public String getPassword() {
         return password;

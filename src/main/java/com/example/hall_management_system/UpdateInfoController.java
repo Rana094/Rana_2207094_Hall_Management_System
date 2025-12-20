@@ -75,9 +75,7 @@ public class UpdateInfoController {
 
         imageBytes = student.getImage();
         if (imageBytes != null) {
-            imageView.setImage(
-                    new Image(new ByteArrayInputStream(imageBytes))
-            );
+            imageView.setImage(new Image(new ByteArrayInputStream(imageBytes)));
         }
     }
 
