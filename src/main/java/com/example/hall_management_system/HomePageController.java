@@ -25,7 +25,6 @@ public class HomePageController extends Application {
         stage.setTitle("Home Page");
         stage.setScene(scene);
         stage.show();
-
         dbManager.getConnection();
     }
 

@@ -126,7 +126,8 @@ public class UpdateInfoController {
 
         if (newPassword.isEmpty() && confirmPassword.isEmpty()) {
             passwordToSave = student.getPassword();
-        } else {
+        }
+        else {
             if (!newPassword.equals(confirmPassword)) {
                 showAlert("Passwords do not match");
                 return;

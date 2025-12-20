@@ -17,7 +17,7 @@
                <children>
                   <Button fx:id="homeBtn" mnemonicParsing="false" onMouseClicked="#gotoHome" prefHeight="25.0" prefWidth="150.0" text="Home" />
                   <Button fx:id="myProfileBtn" mnemonicParsing="false" onMouseClicked="#myProfile" prefHeight="25.0" prefWidth="150.0" text="My Profile" />
-                  <Button mnemonicParsing="false" onAction="#checkHallDueBtn" onMouseClicked="#checkHallDue" prefHeight="25.0" prefWidth="147.0" text="Check  Hall Due" textAlignment="CENTER" />
+                  <Button fx:id="checkHallDueBtn" mnemonicParsing="false" onMouseClicked="#checkHallDue" prefHeight="25.0" prefWidth="147.0" text="Check  Hall Due" textAlignment="CENTER" />
                   <Button fx:id="reqDiningManagerBtn" mnemonicParsing="false" onMouseClicked="#reqDiningManager" prefHeight="47.0" prefWidth="146.0" text="Request for Dinning Mannager" textAlignment="CENTER" wrapText="true" />
                   <Button fx:id="viewNoticesBtn" mnemonicParsing="false" onMouseClicked="#viewNotices" prefHeight="25.0" prefWidth="152.0" text="View Notices" />
                   <Button fx:id="changePasswordBtn" mnemonicParsing="false" onMouseClicked="#changePassword" prefHeight="25.0" prefWidth="161.0" text="Change Login Password" />
@@ -29,7 +29,7 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="centerPane" prefHeight="504.0" prefWidth="642.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" layoutX="241.0" layoutY="77.0" prefHeight="41.0" prefWidth="161.0" text="Welcome" textAlignment="CENTER" />
             <Label fx:id="nameLabel" alignment="CENTER" layoutX="-1.0" layoutY="125.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="643.0" />

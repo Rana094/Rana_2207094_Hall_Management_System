@@ -49,7 +49,8 @@ public class StudentHomePageController {
     private DbManager dbManager = new DbManager();
 
     @FXML
-    void changePassword(MouseEvent event) {
+    void changePassword(MouseEvent event) throws IOException {
+        loadPage("ChangePasswordPage.fxml");
 
     }
 
@@ -98,6 +99,7 @@ public class StudentHomePageController {
 
     }
     int roll;
+
     @FXML
     public void initialize()
     {
