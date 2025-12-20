@@ -60,6 +60,7 @@ public class AdminHomePageController {
 
     @FXML
     void pendingApprovalClicked(MouseEvent event) {
+        loadPage("AdminPendingApprovalPage.fxml");
 
     }
 

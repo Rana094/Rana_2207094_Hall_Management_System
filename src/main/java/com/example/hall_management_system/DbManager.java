@@ -49,7 +49,7 @@ public class DbManager {
     private void createStudentStatusTable()
     {
         getConnection();
-        String query ="create table if not exists studentstatus(roll integer primary key,status Text not null,foreign key(roll) references studentsrecords(roll) on delete cascade)";
+        String query ="create table if not exists studentstatus(roll integer primary key,status Text not null,removeStatus Text not null,foreign key(roll) references studentsrecords(roll) on delete cascade)";
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -91,14 +91,15 @@ public class DbManager {
         }
     }
 
-    public  void insertStudentStatus(Integer roll,String status)
+    public  void insertStudentStatus(Integer roll,String status,String removeStatus)
     {
         getConnection();
-        String sql="insert into studentstatus(roll,status) values (?,?)";
+        String sql="insert into studentstatus(roll,status,removeStatus) values (?,?,?)";
         try(PreparedStatement ps=connection.prepareStatement(sql))
         {
             ps.setInt(1,roll);
             ps.setString(2,status);
+            ps.setString(3,removeStatus);
             ps.executeUpdate();
         }
         catch (SQLException e)
@@ -142,16 +143,16 @@ public class DbManager {
             }
     }
 
-    public void updateStudentStatus(int roll,String status)
+    public void updateStudentStatus(int roll,String status,String removeStatus)
     {
         getConnection();
-        String sql="update studentstatus set status=? where roll=?";
+        String sql="update studentstatus set status=?,set removeStatus=? where roll=?";
         try (PreparedStatement ps= connection.prepareStatement(sql))
         {
             ps.setString(1,status);
-            ps.setInt(2,roll);
+            ps.setString(2,removeStatus);
+            ps.setInt(3,roll);
             ps.executeUpdate();
-
         }
         catch (SQLException e) {
             logger.info(e.toString());
@@ -181,6 +182,37 @@ public class DbManager {
         }
         return students;
     }
+
+    public List<Student> readPendingStudents() {
+        getConnection();
+
+        String query = "select s.roll, s.name, s.image, s.dept " +
+                "from studentsrecords s, studentstatus st " +
+                "where s.roll = st.roll and st.status = ?";
+
+        List<Student> students = new ArrayList<>();
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, "false");
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                int roll = rs.getInt("roll");
+                String name = rs.getString("name");
+                byte[] image = rs.getBytes("image");
+                String dept = rs.getString("dept");
+
+                students.add(new Student(roll, name, image, dept));
+            }
+
+        } catch (SQLException e) {
+            logger.info(e.toString());
+        }
+
+        return students;
+    }
+
 
     public Student getStudentByRoll(int roll) {
 
@@ -223,6 +255,25 @@ public class DbManager {
             if(rs.next())
             {
                 return rs.getString("status");
+            }
+        }
+        catch (SQLException e)
+        {
+            logger.info(e.toString());
+        }
+        return null;
+    }
+    public String getStudentRemoveStatus(int roll)
+    {
+        getConnection();
+        String sql="select * from studentstatus where roll=?";
+        try(PreparedStatement ps= connection.prepareStatement(sql))
+        {
+            ps.setInt(1,roll);
+            ResultSet rs=ps.executeQuery();
+            if(rs.next())
+            {
+                return rs.getString("removeStatus");
             }
         }
         catch (SQLException e)

@@ -103,6 +103,7 @@ public class StudentHomePageController {
     @FXML
     public void initialize()
     {
+        AppContext.studentHome=this;
         logger.info("student Home");
        roll=AppContext.loggedInRoll;
         Student student=dbManager.getStudentByRoll(roll);

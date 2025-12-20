@@ -85,9 +85,7 @@ public class UpdateInfoController {
 
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Choose Image");
-        chooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
-        );
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
 
         File file = chooser.showOpenDialog(null);
         if (file != null) {
@@ -135,17 +133,7 @@ public class UpdateInfoController {
             passwordToSave = newPassword;
         }
 
-        dbManager.updateStudent(
-                student.getRoll(),
-                name,
-                email,
-                address,
-                dept,
-                cgpa,
-                birthDate.toString(),
-                imageBytes,
-                passwordToSave
-        );
+        dbManager.updateStudent(student.getRoll(), name, email, address, dept, cgpa, birthDate.toString(), imageBytes, passwordToSave);
 
 //        Stage stage=(Stage) updateBtn.getScene().getWindow();
 //        FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("AdminHomePage.fxml"));

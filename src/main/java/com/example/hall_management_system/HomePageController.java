@@ -28,7 +28,6 @@ public class HomePageController extends Application {
         dbManager.getConnection();
     }
 
-
     @FXML
     private TextField usernameTxtStudent;
 

@@ -2,7 +2,7 @@ package com.example.hall_management_system;
 
 public class Student {
 
-    private int roll;
+    private int     roll;
     private String name;
     private byte[] image;
     private String email;

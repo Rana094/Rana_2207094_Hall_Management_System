@@ -51,20 +51,13 @@ public class ViewAllStudentsController  {
                 if (empty || student == null) {
                     setText(null);
                     setGraphic(null);
-                } else {
-
-                    ImageView imageView = new ImageView(
-                            new Image(
-                                    new ByteArrayInputStream(student.getImage())
-                            )
-                    );
+                }
+                else {
+                    ImageView imageView = new ImageView(new Image(new ByteArrayInputStream(student.getImage())));
                     imageView.setFitWidth(40);
                     imageView.setFitHeight(40);
                     imageView.setPreserveRatio(true);
-
-                    Label label = new Label(
-                            student.getName() + "  -  " + student.getRoll()+" - "+student.getDept()
-                    );
+                    Label label = new Label(student.getName() + "  -  " + student.getRoll()+" - "+student.getDept());
                     HBox hBox = new HBox(10, imageView, label);
                     setGraphic(hBox);
                 }
