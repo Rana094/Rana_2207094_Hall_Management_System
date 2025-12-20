@@ -5,15 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class HomePageController extends Application {
@@ -52,6 +50,26 @@ public class HomePageController extends Application {
 
     @FXML
     private Button loginBtnStudent;
+    @FXML
+    private TextField passwordTxt;
+    @FXML
+    private CheckBox checkBox;
+
+    @FXML
+    void changevisibility(MouseEvent event)
+    {
+        if(checkBox.isSelected())
+        {
+            passwordTxt.setText(passwordTxtStudent.getText());
+            passwordTxt.setVisible(true);
+            passwordTxtStudent.setVisible(false);
+            return;
+        }
+        passwordTxtStudent.setText(passwordTxt.getText());
+        passwordTxtStudent.setVisible(true);
+        passwordTxt.setVisible(false);
+
+    }
 
     private void loadPage(String page) {
         try {
@@ -94,6 +112,12 @@ public class HomePageController extends Application {
         String rollText = usernameTxtStudent.getText();
         String password = passwordTxtStudent.getText();
 
+        if(checkBox.isSelected())
+        {
+             password = passwordTxt.getText();
+
+        }
+
         if (rollText.isEmpty() || password.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Username and password are required");
             return;
@@ -123,8 +147,12 @@ public class HomePageController extends Application {
         Stage stage = (Stage) loginBtnStudent.getScene().getWindow();
 
         FXMLLoader loader = new FXMLLoader(
-                HomePageController.class.getResource("RegisterPage.fxml")
+                HomePageController.class.getResource("StudentHomePage.fxml")
         );
+
+        StudentHomePageController studentHomePageController=loader.getController();
+        studentHomePageController.setRoll(rollText);
+
         Scene scene = new Scene(loader.load());
 
         stage.setTitle("Student Profile");

@@ -138,6 +138,7 @@ public class DbManager {
     }
 
     public Student getStudentByRoll(int roll) {
+
         getConnection();
 
         String sql = "SELECT * FROM studentsrecords WHERE roll=?";

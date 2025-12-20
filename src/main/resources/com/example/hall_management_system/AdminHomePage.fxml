@@ -18,6 +18,8 @@
                   <Button fx:id="pendingApprovalBtn" mnemonicParsing="false" onMouseClicked="#pendingApprovalClicked" prefHeight="25.0" prefWidth="160.0" text="Pending Approval" />
                   <Button fx:id="diningManagerApprovalBtn" mnemonicParsing="false" onMouseClicked="#diningManagerApprovalClicked" prefHeight="25.0" prefWidth="151.0" text="Dining Manager approval" />
                   <Button fx:id="calculateHallDueBtn" mnemonicParsing="false" onMouseClicked="#calculateHallDueClicked" prefHeight="25.0" prefWidth="151.0" text="Calculate Hall Due" />
+                  <Button fx:id="removeStudentBtn" mnemonicParsing="false" onMouseClicked="#removeStudent" prefHeight="25.0" prefWidth="151.0" text="Remove Student" />
+                  <Button fx:id="signOutBtn" mnemonicParsing="false" onMouseClicked="#signOut" prefHeight="25.0" prefWidth="161.0" text="Sign Out" />
                </children>
             </VBox>
          </children>

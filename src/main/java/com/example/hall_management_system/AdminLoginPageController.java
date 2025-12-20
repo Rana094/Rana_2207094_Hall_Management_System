@@ -36,7 +36,6 @@ public class AdminLoginPageController {
             return;
         }
 
-
         Stage stage=(Stage) loginBtnAdmin.getScene().getWindow();
 
         FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("AdminHomePage.fxml"));
