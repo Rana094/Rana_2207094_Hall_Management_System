@@ -70,13 +70,8 @@ public class ViewAllStudentsController  {
                 }
             }
         });
-
-        viewAllStudentRecords
-                .getSelectionModel()
-                .selectedItemProperty()
-                .addListener((obs, oldVal, newVal) -> {
-                    selectedStudent = newVal;
-                });
+        viewAllStudentRecords.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+                    selectedStudent = newVal;});
     }
 
     @FXML
@@ -94,17 +89,14 @@ public class ViewAllStudentsController  {
 
         try {
 
-            FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("UpdateInfo.fxml"));
+            FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("AdminUpdateInfoPage.fxml"));
             Parent pane = fxmlLoader.load();
 
             UpdateInfoController controller = fxmlLoader.getController();
             Student fullStudent = dbManager.getStudentByRoll(selectedStudent.getRoll());
             controller.setStudent(fullStudent);
 
-            AppContext.adminHome
-                    .getCenterPane()
-                    .getChildren()
-                    .setAll(pane);
+            AppContext.adminHome.getCenterPane().getChildren().setAll(pane);
 
 
         } catch (IOException e) {

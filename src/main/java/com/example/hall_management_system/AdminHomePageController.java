@@ -49,9 +49,13 @@ public class AdminHomePageController {
     }
 
     @FXML
-    void homeClicked(MouseEvent event) {
-        loadPage("AdminHomePage.fxml");
-
+    void homeClicked(MouseEvent event) throws IOException {
+        Stage stage=(Stage) homeBtn.getScene().getWindow();
+        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("AdminHomePage.fxml"));
+        Scene scene=new Scene(fxmlLoader.load());
+        stage.setTitle("Admin Home Page");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -73,13 +77,6 @@ public class AdminHomePageController {
         try {
             Parent pane = FXMLLoader.load(getClass().getResource(page));
             centerPane.getChildren().setAll(pane);
-
-            if (pane instanceof AnchorPane) {
-                AnchorPane.setTopAnchor(pane, 0.0);
-                AnchorPane.setBottomAnchor(pane, 0.0);
-                AnchorPane.setLeftAnchor(pane, 0.0);
-                AnchorPane.setRightAnchor(pane, 0.0);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

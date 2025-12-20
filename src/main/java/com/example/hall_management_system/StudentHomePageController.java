@@ -50,7 +50,7 @@ public class StudentHomePageController {
 
     @FXML
     void changePassword(MouseEvent event) throws IOException {
-        loadPage("ChangePasswordPage.fxml");
+        loadPage("StudentChangePasswordPage.fxml");
 
     }
 

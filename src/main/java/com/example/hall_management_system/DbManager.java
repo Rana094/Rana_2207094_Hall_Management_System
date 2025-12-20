@@ -6,7 +6,6 @@ import java.util.concurrent.BlockingDeque;
 import java.util.logging.Logger;
 
 public class DbManager {
-
     private Connection connection;
     private Logger logger= Logger.getLogger(this.getClass().getName());
     public void getConnection()
@@ -16,10 +15,13 @@ public class DbManager {
             if(connection ==null || connection.isClosed())
             {
                 connection= DriverManager.getConnection("jdbc:sqlite:myhall.db");
+
+                Statement statement=connection.createStatement();
+                statement.execute("PRAGMA foreign_keys =ON");
                 logger.info("connected to Database");
                 createTable();
+                createStudentStatusTable();
             }
-
         }
         catch (SQLException e)
         {
@@ -42,6 +44,18 @@ public class DbManager {
         {
             logger.info(e.toString());
         }
+    }
+
+    private void createStudentStatusTable()
+    {
+        getConnection();
+        String query ="create table if not exists studentstatus(roll integer primary key,status Text not null,foreign key(roll) references studentsrecords(roll) on delete cascade)";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            logger.info(e.toString());
+        }
+
     }
 
     private  void closeconection() throws SQLException
@@ -70,12 +84,28 @@ public class DbManager {
             statement.setString(9,password);
             statement.executeUpdate();
             logger.info("Student Inserted");
-
         }
         catch (SQLException e)
         {
             logger.info(e.toString());
         }
+    }
+
+    public  void insertStudentStatus(Integer roll,String status)
+    {
+        getConnection();
+        String sql="insert into studentstatus(roll,status) values (?,?)";
+        try(PreparedStatement ps=connection.prepareStatement(sql))
+        {
+            ps.setInt(1,roll);
+            ps.setString(2,status);
+            ps.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            logger.info(e.toString());
+        }
+
     }
 
     public void deleteStudent(Integer roll) throws SQLException
@@ -109,8 +139,23 @@ public class DbManager {
                 statement.setInt(9,roll);
                 statement.executeUpdate();
                 logger.info("Student updated");
-
             }
+    }
+
+    public void updateStudentStatus(int roll,String status)
+    {
+        getConnection();
+        String sql="update studentstatus set status=? where roll=?";
+        try (PreparedStatement ps= connection.prepareStatement(sql))
+        {
+            ps.setString(1,status);
+            ps.setInt(2,roll);
+            ps.executeUpdate();
+
+        }
+        catch (SQLException e) {
+            logger.info(e.toString());
+        }
     }
 
     public List<Student> readStudents()
@@ -167,6 +212,26 @@ public class DbManager {
         return null;
     }
 
+    public String getStudentStatus(int roll)
+    {
+        getConnection();
+        String sql="select * from studentstatus where roll=?";
+        try(PreparedStatement ps= connection.prepareStatement(sql))
+        {
+            ps.setInt(1,roll);
+            ResultSet rs=ps.executeQuery();
+            if(rs.next())
+            {
+                return rs.getString("status");
+            }
+        }
+        catch (SQLException e)
+        {
+            logger.info(e.toString());
+        }
+        return null;
+    }
+
     public boolean rollExists(int roll) {
         getConnection();
         String sql = "SELECT 1 FROM studentsrecords WHERE roll=?";
@@ -195,5 +260,4 @@ public class DbManager {
         }
         return false;
     }
-
 }

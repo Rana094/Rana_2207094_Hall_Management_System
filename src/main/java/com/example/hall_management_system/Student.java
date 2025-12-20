@@ -5,7 +5,6 @@ public class Student {
     private int roll;
     private String name;
     private byte[] image;
-
     private String email;
     private String address;
     private String dept;
@@ -68,7 +67,6 @@ public class Student {
 
         return birthdate;
     }
-
 
     public String getPassword() {
         return password;

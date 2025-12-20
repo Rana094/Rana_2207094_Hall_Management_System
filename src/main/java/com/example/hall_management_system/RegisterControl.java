@@ -144,6 +144,7 @@ public class RegisterControl {
 
         dbManager.insertStudent(Integer.valueOf(rollTxt.getText()),nameTxt.getText(),emailTxt.getText(),addressTxt.getText(),departmentTxt.getText(),cgpaTxt.getText(),birthdate,imageBytes,password);
 
+        dbManager.insertStudentStatus(Integer.valueOf(rollTxt.getText()),"false");
         FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("HomePage.fxml"));
         Scene scene =new Scene (fxmlLoader.load());
         stage.setTitle("Student Profile ");
