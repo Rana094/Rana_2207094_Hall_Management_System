@@ -21,6 +21,8 @@ public class DbManager {
                 logger.info("connected to Database");
                 createTable();
                 createStudentStatusTable();
+                createNoticeTable();
+
             }
         }
         catch (SQLException e)
@@ -57,6 +59,24 @@ public class DbManager {
         }
 
     }
+
+    private void createNoticeTable() {
+        getConnection();
+        String sql = """
+        CREATE TABLE IF NOT EXISTS notices (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            message TEXT NOT NULL,
+            created_at TEXT NOT NULL
+        )
+    """;
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            logger.info(e.toString());
+        }
+    }
+
 
     private  void closeconection() throws SQLException
     {
@@ -108,6 +128,19 @@ public class DbManager {
         }
 
     }
+
+    public void insertNotice(String title, String message) {
+        getConnection();
+        String sql = "INSERT INTO notices(title, message, created_at) VALUES(?,?,datetime('now'))";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, title);
+            ps.setString(2, message);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            logger.info(e.toString());
+        }
+    }
+
 
     public void deleteStudent(Integer roll) throws SQLException
     {
@@ -212,6 +245,28 @@ public class DbManager {
 
         return students;
     }
+
+    public List<Notice> readNotices() {
+        getConnection();
+        List<Notice> notices = new ArrayList<>();
+        String sql = "SELECT * FROM notices ORDER BY id DESC";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                notices.add(new Notice(
+                        rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getString("message"),
+                        rs.getString("created_at")
+                ));
+            }
+        } catch (SQLException e) {
+            logger.info(e.toString());
+        }
+        return notices;
+    }
+
 
 
     public Student getStudentByRoll(int roll) {

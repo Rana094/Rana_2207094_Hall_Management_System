@@ -66,7 +66,6 @@ public class HomePageController extends Application {
         passwordTxtStudent.setText(passwordTxt.getText());
         passwordTxtStudent.setVisible(true);
         passwordTxt.setVisible(false);
-
     }
 
     private void loadPage(String page) {

@@ -52,6 +52,17 @@ public class ViewAllStudentsController  {
                     setText(null);
                     setGraphic(null);
                 }
+                else if(dbManager.getStudentStatus(student.getRoll())=="false")
+                {
+                    ImageView imageView = new ImageView(new Image(new ByteArrayInputStream(student.getImage())));
+                    imageView.setFitWidth(40);
+                    imageView.setFitHeight(40);
+                    imageView.setPreserveRatio(true);
+                    Label label = new Label(student.getName() + "  -  " + student.getRoll()+" - "+student.getDept());
+                    HBox hBox = new HBox(10, imageView, label);
+                    setGraphic(hBox);
+
+                }
                 else {
                     ImageView imageView = new ImageView(new Image(new ByteArrayInputStream(student.getImage())));
                     imageView.setFitWidth(40);
@@ -81,7 +92,6 @@ public class ViewAllStudentsController  {
         if (selectedStudent == null) return;
 
         try {
-
             FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("AdminUpdateInfoPage.fxml"));
             Parent pane = fxmlLoader.load();
 
@@ -91,8 +101,8 @@ public class ViewAllStudentsController  {
 
             AppContext.adminHome.getCenterPane().getChildren().setAll(pane);
 
-
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

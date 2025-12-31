@@ -72,7 +72,6 @@ public class RegisterControl {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Image");
 
-
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
         );
@@ -81,10 +80,8 @@ public class RegisterControl {
         if (file != null) {
             Image image = new Image(file.toURI().toString());
             imageView.setImage(image);
-
             imageBytes = Files.readAllBytes(file.toPath());
         }
-
     }
 
     @FXML

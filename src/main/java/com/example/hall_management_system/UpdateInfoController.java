@@ -79,7 +79,6 @@ public class UpdateInfoController {
         }
     }
 
-
     @FXML
     void chooseImage(MouseEvent event) {
 

@@ -95,9 +95,10 @@ public class StudentHomePageController {
     }
 
     @FXML
-    void viewNotices(MouseEvent event) {
-
+    void viewNotices(MouseEvent event) throws IOException {
+        loadPage("StudentViewNotices.fxml");
     }
+
     int roll;
 
     @FXML

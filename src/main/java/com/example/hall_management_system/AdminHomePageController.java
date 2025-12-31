@@ -61,12 +61,11 @@ public class AdminHomePageController {
     @FXML
     void pendingApprovalClicked(MouseEvent event) {
         loadPage("AdminPendingApprovalPage.fxml");
-
     }
 
     @FXML
     void sendNoticeClicked(MouseEvent event) {
-
+            loadPage("AdminSendNotice.fxml");
     }
 
     @FXML

@@ -3,9 +3,7 @@ package com.example.hall_management_system;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -20,16 +18,56 @@ public class AdminLoginPageController {
     private Button loginBtnAdmin;
 
     @FXML
-    private TextField passwordTxtAdmin;
+    private TextField passwordTxt;
+
+    @FXML
+    private PasswordField passwordTxtAdmin;
 
     @FXML
     private TextField usernameTxtAdmin;
+
+    @FXML
+    private CheckBox checkBox;
+
+//    @FXML
+//    void changevisibility(MouseEvent event)
+//    {
+//        if(checkBox.isSelected())
+//        {
+//            passwordTxt.setText(passwordTxtAdmin.getText());
+//            passwordTxt.setVisible(true);
+//            passwordTxtAdmin.setVisible(false);
+//            return;
+//        }
+//        passwordTxtAdmin.setText(passwordTxt.getText());
+//        passwordTxtAdmin.setVisible(true);
+//        passwordTxt.setVisible(false);
+//    }
+
+    @FXML
+    void changevisibility(MouseEvent event)
+    {
+        if(checkBox.isSelected())
+        {
+            passwordTxt.setText(passwordTxtAdmin.getText());
+            passwordTxt.setVisible(true);
+            passwordTxtAdmin.setVisible(false);
+            return;
+        }
+        passwordTxtAdmin.setText(passwordTxt.getText());
+        passwordTxtAdmin.setVisible(true);
+        passwordTxt.setVisible(false);
+    }
 
     String pass="admin";
     String username="admin";
 
     @FXML
     void gotoAdminProfile(MouseEvent event) throws IOException {
+        if(checkBox.isSelected())
+        {
+            passwordTxtAdmin.setText(passwordTxt.getText());
+        }
 
         if (!passwordTxtAdmin.getText().equals(pass) || !usernameTxtAdmin.getText().equals(username)) {
             showAlert(Alert.AlertType.ERROR, "Passwords do not match");
