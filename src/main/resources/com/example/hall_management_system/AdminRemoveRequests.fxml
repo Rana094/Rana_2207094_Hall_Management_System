@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane prefHeight="505.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hall_management_system.AdminRemoveRequestsController">
+
+    <center>
+        <TableView fx:id="studentTable">
+
+            <columns>
+                <TableColumn fx:id="rollCol" prefWidth="70.0" text="Roll" />
+                <TableColumn fx:id="nameCol" prefWidth="200" text="Name" />
+                <TableColumn fx:id="deptCol" prefWidth="200" text="Department" />
+                <TableColumn fx:id="hallDueCol" prefWidth="200" text="Total Hall Due" />
+            </columns>
+
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" prefHeight="50" spacing="20">
+            <Button onMouseClicked="#approveRemoval" text="Approve Removal" />
+            <Button onMouseClicked="#rejectRemoval" text="Reject Request" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

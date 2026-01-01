@@ -446,6 +446,36 @@ public class DbManager {
         }
         return null;
     }
+    public List<Student> readRemovalRequests() {
+        getConnection();
+
+        List<Student> students = new ArrayList<>();
+
+        String sql =
+                "SELECT s.roll, s.name, s.image, s.dept " +
+                        "FROM studentsrecords s " +
+                        "JOIN studentstatus st ON s.roll = st.roll " +
+                        "WHERE st.removeStatus = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, "true");
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                students.add(new Student(
+                        rs.getInt("roll"),
+                        rs.getString("name"),
+                        rs.getBytes("image"),
+                        rs.getString("dept")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return students;
+    }
+
     public String getStudentRemoveStatus(int roll)
     {
         getConnection();

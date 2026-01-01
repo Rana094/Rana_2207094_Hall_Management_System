@@ -114,5 +114,6 @@ public class AdminHomePageController {
     }
 
     public void removeStudent(MouseEvent mouseEvent) {
+        loadPage("AdminRemoveRequests.fxml");
     }
 }

@@ -78,7 +78,9 @@ public class StudentHomePageController {
     }
 
     @FXML
-    void reqToRemove(MouseEvent event) {
+    void reqToRemove(MouseEvent event) throws IOException {
+
+        loadPage("StudentReqToRemove.fxml");
 
     }
 
