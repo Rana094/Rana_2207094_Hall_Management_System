@@ -10,7 +10,7 @@
     <center>
         <AnchorPane prefHeight="510.0" prefWidth="644.0" BorderPane.alignment="CENTER">
             <children>
-                <ListView fx:id="viewAllStudentRecords" layoutX="-5.0" layoutY="-2.0" prefHeight="460.0" prefWidth="647.0" />
+                <ListView fx:id="viewAllPendingStudent" layoutX="-5.0" layoutY="-2.0" prefHeight="460.0" prefWidth="647.0" />
             </children>
         </AnchorPane>
     </center>

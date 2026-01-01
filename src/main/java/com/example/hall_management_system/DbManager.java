@@ -179,7 +179,7 @@ public class DbManager {
     public void updateStudentStatus(int roll,String status,String removeStatus)
     {
         getConnection();
-        String sql="update studentstatus set status=?,set removeStatus=? where roll=?";
+        String sql="update studentstatus set status=?, removeStatus=? where roll=?";
         try (PreparedStatement ps= connection.prepareStatement(sql))
         {
             ps.setString(1,status);
@@ -195,10 +195,16 @@ public class DbManager {
     public List<Student> readStudents()
     {
         getConnection();
-        String query = "select * from studentsrecords";
+//        String query = "select * from studentsrecords s,studentstatus st where st.status=?";
+        String query =
+                "SELECT s.roll, s.name, s.image, s.dept " +
+                        "FROM studentsrecords s " +
+                        "JOIN studentstatus st ON s.roll = st.roll " +
+                        "WHERE st.status = ?";
         List<Student> students=new ArrayList<>();
         try(PreparedStatement statement=connection.prepareStatement(query))
         {
+            statement.setString(1, "true");
             ResultSet rs =statement.executeQuery();
             while(rs.next())
             {

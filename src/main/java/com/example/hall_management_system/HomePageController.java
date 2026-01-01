@@ -134,6 +134,13 @@ public class HomePageController extends Application {
             return;
         }
 
+        if(dbManager.getStudentStatus(roll).equals("false"))
+        {
+            showAlert(Alert.AlertType.ERROR, "Admin has not Approved Yet,kindly contact the Hall Office");
+            return;
+
+        }
+
 
         Stage stage = (Stage) loginBtnStudent.getScene().getWindow();
 

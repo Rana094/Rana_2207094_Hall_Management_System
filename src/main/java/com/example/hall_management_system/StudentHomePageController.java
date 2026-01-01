@@ -66,6 +66,7 @@ public class StudentHomePageController {
 
     @FXML
     void myProfile(MouseEvent event) throws IOException {
+        AppContext.StudentMyProfileControl="student";
         loadPage("StudentMyProfile.fxml");
     }
 
