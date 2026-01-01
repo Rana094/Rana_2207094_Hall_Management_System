@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hall_management_system.AdminCalculateHallDueController">
+
+    <VBox spacing="20" AnchorPane.leftAnchor="40" AnchorPane.rightAnchor="40" AnchorPane.topAnchor="40">
+
+        <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Calculate Hall Due" />
+
+        <HBox spacing="15">
+            <Label text="Select Month:" />
+            <ComboBox fx:id="monthCombo" prefWidth="200" />
+        </HBox>
+
+        <HBox spacing="15">
+            <Label text="Amount:" />
+            <TextField fx:id="amountField" promptText="Enter amount" />
+        </HBox>
+
+        <Button fx:id="generateBtn" onAction="#generateBill" prefWidth="150" text="Generate Bill" />
+
+        <Label fx:id="statusLabel" style="-fx-text-fill: green;" />
+
+    </VBox>
+   <Button layoutX="216.0" layoutY="279.0" mnemonicParsing="false" onMouseClicked="#viewHallBills" text="View all Generated Hall Dues" />
+</AnchorPane>

@@ -40,6 +40,7 @@ public class AdminHomePageController {
 
     @FXML
     void calculateHallDueClicked(MouseEvent event) {
+        loadPage("AdminCalculateHallDue.fxml");
 
     }
 

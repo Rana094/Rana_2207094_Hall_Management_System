@@ -22,6 +22,7 @@ public class DbManager {
                 createTable();
                 createStudentStatusTable();
                 createNoticeTable();
+                createHallBillsTable();
 
             }
         }
@@ -76,6 +77,26 @@ public class DbManager {
             logger.info(e.toString());
         }
     }
+
+    private void createHallBillsTable() {
+        getConnection();
+        String sql = """
+        CREATE TABLE IF NOT EXISTS hall_bills (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            roll INTEGER NOT NULL,
+            month TEXT NOT NULL,
+            amount INTEGER NOT NULL,
+            paid INTEGER DEFAULT 0,
+            FOREIGN KEY (roll) REFERENCES studentsrecords(roll)
+        )
+    """;
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     private  void closeconection() throws SQLException
@@ -141,6 +162,107 @@ public class DbManager {
         }
     }
 
+    public void generateMonthlyHallBills(String month, int amount) {
+        getConnection();
+
+        String sql =
+                "INSERT INTO hall_bills (roll, month, amount, paid) " +
+                        "SELECT roll, ?, ?, 0 FROM studentsrecords";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, month);
+            ps.setInt(2, amount);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<HallBillMonth> getGeneratedHallBills() {
+        getConnection();
+
+        List<HallBillMonth> list = new ArrayList<>();
+
+        String sql =
+                "SELECT month, amount " +
+                        "FROM hall_bills " +
+                        "GROUP BY month, amount " +
+                        "ORDER BY month DESC";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new HallBillMonth(
+                        rs.getString("month"),
+                        rs.getInt("amount")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public List<HallBillMonth> getUnpaidBillsForStudent(int roll) {
+        getConnection();
+        List<HallBillMonth> bills = new ArrayList<>();
+
+        String sql =
+                "SELECT id, month, amount " +
+                        "FROM hall_bills " +
+                        "WHERE roll=? AND paid=0 " +
+                        "ORDER BY month";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, roll);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                bills.add(new HallBillMonth(
+                        rs.getInt("id"),
+                        rs.getString("month"),
+                        rs.getInt("amount")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bills;
+    }
+
+    public void markBillAsPaid(int billId) {
+        getConnection();
+        String sql = "UPDATE hall_bills SET paid=1 WHERE id=?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, billId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getTotalHallDue(int roll) {
+        getConnection();
+//        String sql =
+//                "SELECT COALESCE(SUM(amount), 0) " +
+//                        "FROM hall_bills " +
+//                        "WHERE roll=? AND paid=0";
+
+        String sql =
+                "SELECT SUM(amount) FROM hall_bills WHERE roll=? AND paid=0";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, roll);
+            ResultSet rs = ps.executeQuery();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     public void deleteStudent(Integer roll) throws SQLException
     {

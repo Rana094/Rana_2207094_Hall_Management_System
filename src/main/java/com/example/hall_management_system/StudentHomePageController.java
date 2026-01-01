@@ -55,12 +55,14 @@ public class StudentHomePageController {
     }
 
     @FXML
-    void checkHallDue(MouseEvent event) {
+    void checkHallDue(MouseEvent event) throws IOException {
+        loadPage("StudentHallDues.fxml");
 
     }
 
     @FXML
     void checkHallDueBtn(ActionEvent event) {
+
 
     }
 
