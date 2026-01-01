@@ -2,108 +2,95 @@ package com.example.hall_management_system;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-public class ViewAllStudentsController  {
-    private Logger logger= Logger.getLogger(this.getClass().getName());
+public class ViewAllStudentsController {
+
+    private Logger logger = Logger.getLogger(this.getClass().getName());
+
     @FXML
-    private ListView<Student> viewAllStudentRecords;
+    private TableView<Student> studentTable;
 
-    private DbManager dbManager = new DbManager();
+    @FXML
+    private TableColumn<Student, Integer> rollCol;
 
-    private Student selectedStudent;
+    @FXML
+    private TableColumn<Student, String> nameCol;
+
+    @FXML
+    private TableColumn<Student, String> deptCol;
+
+    @FXML
+    private TableColumn<Student, String> statusCol;
+
+    @FXML
+    private TableColumn<Student, Integer> hallDueCol;
 
     @FXML
     private Button deleteStudentBtn;
+
     @FXML
     private Button updateStudentBtn;
 
+    private DbManager dbManager = new DbManager();
+    private Student selectedStudent;
+
     @FXML
-    public void initialize()
-    {
-        viewAllStudentRecords.getItems().addAll(dbManager.readStudents());
-        logger.info("stuf on");
+    public void initialize() {
 
-        viewAllStudentRecords.setCellFactory(list -> new ListCell<>() {
 
-            @Override
-            protected void updateItem(Student student, boolean empty) {
-                super.updateItem(student, empty);
+        rollCol.setCellValueFactory(new PropertyValueFactory<>("roll"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        deptCol.setCellValueFactory(new PropertyValueFactory<>("dept"));
 
-                if (empty || student == null) {
-                    setText(null);
-                    setGraphic(null);
-                }
-                else if(dbManager.getStudentStatus(student.getRoll())=="false")
-                {
-                    ImageView imageView = new ImageView(new Image(new ByteArrayInputStream(student.getImage())));
-                    imageView.setFitWidth(40);
-                    imageView.setFitHeight(40);
-                    imageView.setPreserveRatio(true);
-                    Label label = new Label(student.getName() + "  -  " + student.getRoll()+" - "+student.getDept());
-                    HBox hBox = new HBox(10, imageView, label);
-                    setGraphic(hBox);
 
-                }
-                else {
-                    ImageView imageView = new ImageView(new Image(new ByteArrayInputStream(student.getImage())));
-                    imageView.setFitWidth(40);
-                    imageView.setFitHeight(40);
-                    imageView.setPreserveRatio(true);
-                    Label label = new Label(student.getName() + "  -  " + student.getRoll()+" - "+student.getDept());
-                    HBox hBox = new HBox(10, imageView, label);
-                    setGraphic(hBox);
-                }
-            }
+        hallDueCol.setCellValueFactory(cellData -> {
+            int due = dbManager.getTotalHallDue(cellData.getValue().getRoll());
+            return new javafx.beans.property.SimpleIntegerProperty(due).asObject();
         });
-        viewAllStudentRecords.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-                    selectedStudent = newVal;});
+
+        studentTable.getItems().addAll(dbManager.readStudents());
+
+        studentTable.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((obs, oldVal, newVal) -> selectedStudent = newVal);
+
+        logger.info("All students loaded in table");
     }
 
     @FXML
-    void deleteStudent(MouseEvent event) throws SQLException {
+    void deleteStudent() throws SQLException {
         if (selectedStudent == null) return;
 
         dbManager.deleteStudent(selectedStudent.getRoll());
-        viewAllStudentRecords.getItems().remove(selectedStudent);
-
+        studentTable.getItems().remove(selectedStudent);
     }
 
     @FXML
-    private void updateStudent() {
+    void updateStudent() {
         if (selectedStudent == null) return;
 
         try {
-            FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("AdminUpdateInfoPage.fxml"));
-            Parent pane = fxmlLoader.load();
+            FXMLLoader loader =
+                    new FXMLLoader(getClass().getResource("AdminUpdateInfoPage.fxml"));
+            Parent pane = loader.load();
 
-            UpdateInfoController controller = fxmlLoader.getController();
-            Student fullStudent = dbManager.getStudentByRoll(selectedStudent.getRoll());
+            UpdateInfoController controller = loader.getController();
+            Student fullStudent =
+                    dbManager.getStudentByRoll(selectedStudent.getRoll());
             controller.setStudent(fullStudent);
 
             AppContext.adminHome.getCenterPane().getChildren().setAll(pane);
 
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
+
