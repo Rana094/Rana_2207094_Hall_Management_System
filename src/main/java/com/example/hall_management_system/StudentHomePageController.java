@@ -73,7 +73,8 @@ public class StudentHomePageController {
     }
 
     @FXML
-    void reqDiningManager(MouseEvent event) {
+    void reqDiningManager(MouseEvent event) throws IOException {
+        loadPage("StudentDiningManagerRequest.fxml");
 
     }
 

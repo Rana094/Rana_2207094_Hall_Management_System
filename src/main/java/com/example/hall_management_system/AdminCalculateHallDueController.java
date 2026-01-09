@@ -24,7 +24,6 @@ public class AdminCalculateHallDueController {
 
     @FXML
     public void initialize() {
-        // Load next 12 months
         YearMonth current = YearMonth.now();
         for (int i = 0; i < 12; i++) {
             monthCombo.getItems().add(current.plusMonths(i).toString());

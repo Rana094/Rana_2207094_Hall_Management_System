@@ -23,6 +23,7 @@ public class DbManager {
                 createStudentStatusTable();
                 createNoticeTable();
                 createHallBillsTable();
+                createDiningManagerRequestTable();
 
             }
         }
@@ -524,4 +525,73 @@ public class DbManager {
         }
         return false;
     }
+    private void createDiningManagerRequestTable() {
+        getConnection();
+
+        String sql = """
+        CREATE TABLE IF NOT EXISTS dining_manager_requests (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            roll INTEGER NOT NULL,
+            month TEXT NOT NULL,
+            approved INTEGER DEFAULT 0,
+            FOREIGN KEY (roll) REFERENCES studentsrecords(roll)
+        )
+    """;
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isDiningManagerSelected(String month) {
+        getConnection();
+
+        String sql =
+                "SELECT 1 FROM dining_manager_requests " +
+                        "WHERE month = ? AND approved = 1";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, month);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean hasAppliedForDiningManager(int roll, String month) {
+        getConnection();
+
+        String sql =
+                "SELECT 1 FROM dining_manager_requests " +
+                        "WHERE roll = ? AND month = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, roll);
+            ps.setString(2, month);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public void requestDiningManager(int roll, String month) {
+        getConnection();
+
+        String sql =
+                "INSERT INTO dining_manager_requests (roll, month, approved) " +
+                        "VALUES (?, ?, 0)";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, roll);
+            ps.setString(2, month);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
