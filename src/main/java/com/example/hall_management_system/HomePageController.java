@@ -141,7 +141,6 @@ public class HomePageController extends Application {
 
         }
 
-
         Stage stage = (Stage) loginBtnStudent.getScene().getWindow();
 
         FXMLLoader loader = new FXMLLoader(

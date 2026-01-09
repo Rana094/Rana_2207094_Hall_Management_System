@@ -29,21 +29,6 @@ public class AdminLoginPageController {
     @FXML
     private CheckBox checkBox;
 
-//    @FXML
-//    void changevisibility(MouseEvent event)
-//    {
-//        if(checkBox.isSelected())
-//        {
-//            passwordTxt.setText(passwordTxtAdmin.getText());
-//            passwordTxt.setVisible(true);
-//            passwordTxtAdmin.setVisible(false);
-//            return;
-//        }
-//        passwordTxtAdmin.setText(passwordTxt.getText());
-//        passwordTxtAdmin.setVisible(true);
-//        passwordTxt.setVisible(false);
-//    }
-
     @FXML
     void changevisibility(MouseEvent event)
     {
@@ -78,7 +63,7 @@ public class AdminLoginPageController {
 
         FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("AdminHomePage.fxml"));
         Scene scene =new Scene (fxmlLoader.load());
-        stage.setTitle("Student Profile ");
+        stage.setTitle("Admin Profile ");
         stage.setScene(scene);
         stage.show();
 
@@ -91,7 +76,7 @@ public class AdminLoginPageController {
 
         FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("HomePage.fxml"));
         Scene scene =new Scene (fxmlLoader.load());
-        stage.setTitle("Student Profile ");
+        stage.setTitle("Home Page ");
         stage.setScene(scene);
         stage.show();
 

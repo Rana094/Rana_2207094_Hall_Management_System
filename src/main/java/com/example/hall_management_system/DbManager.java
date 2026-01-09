@@ -593,5 +593,60 @@ public class DbManager {
             e.printStackTrace();
         }
     }
+    public List<Student> getDiningManagerRequests(String month) {
+        getConnection();
 
+        List<Student> students = new ArrayList<>();
+
+        String sql =
+                "SELECT s.roll, s.name, s.image, s.dept " +
+                        "FROM studentsrecords s " +
+                        "JOIN dining_manager_requests d ON s.roll = d.roll " +
+                        "WHERE d.month = ? AND d.approved = 0";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, month);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                students.add(new Student(
+                        rs.getInt("roll"),
+                        rs.getString("name"),
+                        rs.getBytes("image"),
+                        rs.getString("dept")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+    public void approveDiningManager(int roll, String month) {
+        getConnection();
+
+        String approveSql =
+                "UPDATE dining_manager_requests " +
+                        "SET approved = 1 " +
+                        "WHERE roll = ? AND month = ?";
+
+        String rejectOthersSql =
+                "DELETE FROM dining_manager_requests " +
+                        "WHERE month = ? AND roll != ?";
+
+        try (
+                PreparedStatement ps1 = connection.prepareStatement(approveSql);
+                PreparedStatement ps2 = connection.prepareStatement(rejectOthersSql)
+        ) {
+            ps1.setInt(1, roll);
+            ps1.setString(2, month);
+            ps1.executeUpdate();
+
+            ps2.setString(1, month);
+            ps2.setInt(2, roll);
+            ps2.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

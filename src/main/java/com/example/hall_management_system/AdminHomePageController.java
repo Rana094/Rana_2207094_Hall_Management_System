@@ -47,6 +47,8 @@ public class AdminHomePageController {
     @FXML
     void diningManagerApprovalClicked(MouseEvent event) {
 
+        loadPage("AdminDiningManagerApproval.fxml");
+
     }
 
     @FXML

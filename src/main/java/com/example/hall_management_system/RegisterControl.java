@@ -148,7 +148,7 @@ public class RegisterControl {
 
         FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("HomePage.fxml"));
         Scene scene =new Scene (fxmlLoader.load());
-        stage.setTitle("Student Profile ");
+        stage.setTitle("Home Page ");
         stage.setScene(scene);
         stage.show();
     }

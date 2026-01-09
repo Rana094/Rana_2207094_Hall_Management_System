@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefWidth="900" prefHeight="520"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hall_management_system.AdminDiningManagerApprovalController">
+
+    <center>
+        <TableView fx:id="studentTable">
+
+            <columns>
+                <TableColumn fx:id="rollCol" text="Roll" prefWidth="80"/>
+                <TableColumn fx:id="nameCol" text="Name" prefWidth="200"/>
+                <TableColumn fx:id="deptCol" text="Department" prefWidth="150"/>
+                <TableColumn fx:id="cgpaCol" text="CGPA" prefWidth="80"/>
+                <TableColumn fx:id="hallDueCol" text="Hall Due" prefWidth="120"/>
+            </columns>
+
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="20" alignment="CENTER" prefHeight="50">
+            <Button text="Approve Dining Manager"
+                    onMouseClicked="#approveManager"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
