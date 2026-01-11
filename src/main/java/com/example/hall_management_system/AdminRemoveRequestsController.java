@@ -23,7 +23,7 @@ public class AdminRemoveRequestsController {
     @FXML
     private TableColumn<Student, Integer> hallDueCol;
 
-    private DbManager dbManager = new DbManager();
+    private final DbManager dbManager = new DbManager();
     private Student selectedStudent;
 
     @FXML
@@ -35,25 +35,52 @@ public class AdminRemoveRequestsController {
 
         hallDueCol.setCellValueFactory(cell ->
                 new javafx.beans.property.SimpleIntegerProperty(
-                        dbManager.getTotalHallDue(cell.getValue().getRoll())
+                        dbManager.getTotalHallDue(
+                                cell.getValue().getRoll()
+                        )
                 ).asObject()
         );
 
-        studentTable.getItems()
-                .addAll(dbManager.readRemovalRequests());
+        loadRequests();
 
         studentTable.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((obs, oldVal, newVal) -> selectedStudent = newVal);
     }
 
+    private void loadRequests() {
+        studentTable.getItems().clear();
+        studentTable.getItems().addAll(dbManager.readRemovalRequests());
+        selectedStudent = null;
+    }
+
     @FXML
     void approveRemoval() throws SQLException {
+
         if (selectedStudent == null) return;
 
-        dbManager.deleteStudent(selectedStudent.getRoll());
-        studentTable.getItems().remove(selectedStudent);
+        Alert alert = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to remove this student permanently?"
+        );
+
+        if (alert.showAndWait().orElse(ButtonType.CANCEL) != ButtonType.OK) {
+            return;
+        }
+
+        int roll = selectedStudent.getRoll();
+
+        dbManager.updateStudentStatus(
+                roll,
+                dbManager.getStudentStatus(roll),
+                "false"
+        );
+
+        dbManager.deleteStudent(roll);
+
+        loadRequests();
     }
+
 
     @FXML
     void rejectRemoval() {
@@ -65,6 +92,6 @@ public class AdminRemoveRequestsController {
                 "false"
         );
 
-        studentTable.getItems().remove(selectedStudent);
+        loadRequests();
     }
 }

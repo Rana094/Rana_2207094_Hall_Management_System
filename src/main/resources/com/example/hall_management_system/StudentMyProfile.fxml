@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -31,7 +30,7 @@
                   </VBox>
                   <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="300.0" styleClass="vbox" stylesheets="@mycss.css">
                      <children>
-                        <TextField fx:id="rollTxt" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="27.0" prefWidth="312.0" styleClass="text-field" stylesheets="@mycss.css" />
+                        <TextField fx:id="rollTxt" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="27.0" prefWidth="129.0" styleClass="text-field" stylesheets="@mycss.css" />
                         <TextField fx:id="nameTxt" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="27.0" prefWidth="312.0" styleClass="text-field" stylesheets="@mycss.css" />
                         <TextField fx:id="emailTxt" editable="false" minHeight="-Infinity" prefHeight="27.0" prefWidth="334.0" />
                         <TextArea fx:id="addressTxt" editable="false" prefHeight="51.0" prefWidth="334.0" />
@@ -42,7 +41,7 @@
                   </VBox>
                </children>
             </HBox>
-            <ImageView fx:id="imageView" fitHeight="101.0" fitWidth="155.0" layoutX="244.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView" fitHeight="91.0" fitWidth="127.0" layoutX="259.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
             <HBox layoutX="251.0" layoutY="390.0" prefHeight="26.0" prefWidth="142.0">
                <children>
                   <Button fx:id="goBackBtn" mnemonicParsing="false" onMouseClicked="#goBack" text="Go Back" visible="false">
@@ -61,14 +60,14 @@
       </AnchorPane>
    </center>
    <top>
-      <StackPane prefHeight="76.0" prefWidth="642.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="54.0" prefWidth="642.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="textLabel" prefHeight="27.0" prefWidth="128.0" text="My Profile">
+            <Label fx:id="textLabel" layoutX="267.0" layoutY="10.0" prefHeight="35.0" prefWidth="108.0">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Times New Roman" size="24.0" />
                </font>
             </Label>
          </children>
-      </StackPane>
+      </AnchorPane>
    </top>
 </BorderPane>

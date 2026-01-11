@@ -1,9 +1,13 @@
 package com.example.hall_management_system;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.io.IOException;
 
 public class AdminViewHallBillsController {
 
@@ -26,4 +30,22 @@ public class AdminViewHallBillsController {
 
         billTable.getItems().addAll(dbManager.getGeneratedHallBills());
     }
+    @FXML
+    private void goBack() {
+        try {
+            Parent pane = FXMLLoader.load(
+                    getClass().getResource("AdminCalculateHallDue.fxml")
+            );
+
+            AppContext.adminHome
+                    .getCenterPane()
+                    .getChildren()
+                    .setAll(pane);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

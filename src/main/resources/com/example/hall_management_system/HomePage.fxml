@@ -17,7 +17,7 @@
             <Button fx:id="loginBtnStudent" layoutX="337.0" layoutY="154.0" mnemonicParsing="false" onMouseClicked="#gotoStudentProfile" stylesheets="@mycss.css" text="LOG IN" />
             <Button fx:id="gotoRegisterPageBtn" layoutX="250.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#gotoRegisterPage" styleClass="grayButton" stylesheets="@mycss.css" text="REGISTER" />
             <Button fx:id="gotoAdminPageBtn" layoutX="403.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#gotoAdminPage" styleClass="redButon" stylesheets="@mycss.css" text="ADMIN LOG IN" />
-            <Label layoutX="318.0" layoutY="2.0" prefHeight="50.0" prefWidth="147.0" text="STUDENT LOGIN">
+            <Label layoutX="302.0" prefHeight="50.0" prefWidth="147.0" text="STUDENT LOGIN">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -31,7 +31,10 @@
    <top>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="150.0" prefWidth="754.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="339.0" layoutY="35.0" text="Hall" />
+            <Label layoutX="155.0" layoutY="48.0" prefHeight="55.0" prefWidth="444.0" text="Hall Management System">
+               <font>
+                  <Font size="38.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </top>

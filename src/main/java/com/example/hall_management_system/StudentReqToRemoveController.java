@@ -16,6 +16,7 @@ public class StudentReqToRemoveController {
         else
         {
             dbManager.updateStudentStatus(AppContext.loggedInRoll, dbManager.getStudentStatus(AppContext.loggedInRoll),"true" );
+            showAlert(Alert.AlertType.INFORMATION,"Request Submitted Successfully");
         }
 
     }

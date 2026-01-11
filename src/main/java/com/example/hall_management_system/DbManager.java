@@ -8,31 +8,28 @@ import java.util.logging.Logger;
 public class DbManager {
     private Connection connection;
     private Logger logger= Logger.getLogger(this.getClass().getName());
-    public void getConnection()
-    {
-        try
-        {
-            if(connection ==null || connection.isClosed())
-            {
-                connection= DriverManager.getConnection("jdbc:sqlite:myhall.db");
+    public void getConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection("jdbc:sqlite:myhall.db");
 
-                Statement statement=connection.createStatement();
-                statement.execute("PRAGMA foreign_keys =ON");
-                logger.info("connected to Database");
+                try (Statement stmt = connection.createStatement()) {
+                    stmt.execute("PRAGMA foreign_keys = ON");
+                }
+
+                logger.info("connected to Database (FK enabled)");
+
                 createTable();
                 createStudentStatusTable();
                 createNoticeTable();
                 createHallBillsTable();
                 createDiningManagerRequestTable();
-
             }
-        }
-        catch (SQLException e)
-        {
-            logger.info(e.toString());
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+
 
     private void createTable()
     {
@@ -88,7 +85,9 @@ public class DbManager {
             month TEXT NOT NULL,
             amount INTEGER NOT NULL,
             paid INTEGER DEFAULT 0,
-            FOREIGN KEY (roll) REFERENCES studentsrecords(roll)
+            FOREIGN KEY (roll)
+                REFERENCES studentsrecords(roll)
+                ON DELETE CASCADE
         )
     """;
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -97,6 +96,7 @@ public class DbManager {
             e.printStackTrace();
         }
     }
+
 
 
 
@@ -527,23 +527,24 @@ public class DbManager {
     }
     private void createDiningManagerRequestTable() {
         getConnection();
-
         String sql = """
         CREATE TABLE IF NOT EXISTS dining_manager_requests (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             roll INTEGER NOT NULL,
             month TEXT NOT NULL,
             approved INTEGER DEFAULT 0,
-            FOREIGN KEY (roll) REFERENCES studentsrecords(roll)
+            FOREIGN KEY (roll)
+                REFERENCES studentsrecords(roll)
+                ON DELETE CASCADE
         )
     """;
-
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     public boolean isDiningManagerSelected(String month) {
         getConnection();

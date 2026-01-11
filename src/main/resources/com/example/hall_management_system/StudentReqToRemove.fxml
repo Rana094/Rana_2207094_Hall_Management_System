@@ -4,14 +4,17 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="505.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hall_management_system.StudentReqToRemoveController">
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Label layoutX="124.0" layoutY="219.0" text="! If you want to leave from the hall,click here for a hall removal request" />
-            <Button layoutX="216.0" layoutY="253.0" mnemonicParsing="false" onMouseClicked="#remove" text="Click here to request for removal" />
+            <Label layoutX="135.0" layoutY="189.0" text="! If you want to leave from the hall,click here for a hall removal request">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button layoutX="226.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#remove" text="Click here to request for removal" />
          </children>
       </AnchorPane>
    </center>

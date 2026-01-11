@@ -3,27 +3,38 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.hall_management_system.AdminViewHallBillsController"
             prefWidth="600" prefHeight="400">
 
-    <VBox spacing="15"
-          AnchorPane.topAnchor="20"
-          AnchorPane.leftAnchor="20"
-          AnchorPane.rightAnchor="20">
+    <center>
+        <VBox spacing="15"
+              alignment="TOP_LEFT"
+              BorderPane.alignment="CENTER"
+              style="-fx-padding: 20;">
 
-        <Label text="Generated Hall Bills"
-               style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+            <Label text="Generated Hall Bills"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
-        <TableView fx:id="billTable" prefHeight="300">
+            <TableView fx:id="billTable" prefHeight="280">
+                <columns>
+                    <TableColumn fx:id="monthCol" text="Month" prefWidth="200"/>
+                    <TableColumn fx:id="amountCol" text="Amount" prefWidth="200"/>
+                </columns>
+            </TableView>
 
-            <columns>
-                <TableColumn fx:id="monthCol" text="Month" prefWidth="200"/>
-                <TableColumn fx:id="amountCol" text="Amount" prefWidth="200"/>
-            </columns>
+        </VBox>
+    </center>
 
-        </TableView>
+    <bottom>
+        <HBox alignment="CENTER"
+              prefHeight="50"
+              spacing="10">
 
-    </VBox>
-</AnchorPane>
+            <Button text="Back"
+                    onAction="#goBack"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

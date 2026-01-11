@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hall_management_system.AdminHomePageController">
    <left>
@@ -31,7 +32,10 @@
    <center>
       <AnchorPane fx:id="centerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="640.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="306.0" layoutY="218.0" text="Hello Main" />
+            <Label layoutX="156.0" layoutY="196.0" text="WECOME TO ADMIN PORTAL">
+               <font>
+                  <Font name="Nirmala Text Bold" size="25.0" />
+               </font></Label>
          </children></AnchorPane>
    </center>
 </BorderPane>
