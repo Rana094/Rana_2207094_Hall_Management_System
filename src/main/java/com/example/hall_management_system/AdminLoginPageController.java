@@ -76,7 +76,7 @@ public class AdminLoginPageController {
 
         FXMLLoader fxmlLoader=new FXMLLoader(HomePageController.class.getResource("HomePage.fxml"));
         Scene scene =new Scene (fxmlLoader.load());
-        stage.setTitle("Home Page ");
+        stage.setTitle("Student Login");
         stage.setScene(scene);
         stage.show();
 
